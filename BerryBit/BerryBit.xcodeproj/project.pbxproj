@@ -1,0 +1,769 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		04268DEA1FDE15B100DC0B6D /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 04268DE91FDE15B100DC0B6D /* README.rtf */; };
+		04268DED1FDE175D00DC0B6D /* PublicClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04268DEC1FDE175D00DC0B6D /* PublicClass.swift */; };
+		04268DF01FDE25CA00DC0B6D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04268DF21FDE25CA00DC0B6D /* Localizable.strings */; };
+		042761401FD521260005DB4E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0427613F1FD521260005DB4E /* AppDelegate.swift */; };
+		042761421FD521260005DB4E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042761411FD521260005DB4E /* ViewController.swift */; };
+		042761471FD521260005DB4E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 042761461FD521260005DB4E /* Assets.xcassets */; };
+		0427614A1FD521260005DB4E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 042761481FD521260005DB4E /* LaunchScreen.storyboard */; };
+		042761551FD521270005DB4E /* BerryBitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042761541FD521270005DB4E /* BerryBitTests.swift */; };
+		042761601FD521270005DB4E /* BerryBitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0427615F1FD521270005DB4E /* BerryBitUITests.swift */; };
+		042761701FD530D30005DB4E /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0427616F1FD530D30005DB4E /* LoginVC.swift */; };
+		042761721FD530EE0005DB4E /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042761711FD530EE0005DB4E /* HomeVC.swift */; };
+		0428D29B200F22C200D3EF0B /* BlueTooth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0428D29A200F22C200D3EF0B /* BlueTooth.swift */; };
+		0428D29D200F405900D3EF0B /* PeripheralModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0428D29C200F405900D3EF0B /* PeripheralModel.swift */; };
+		0428D2A12010768800D3EF0B /* BlueToothVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0428D2A02010768800D3EF0B /* BlueToothVC.swift */; };
+		0428D2A32010802600D3EF0B /* DevicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0428D2A22010802600D3EF0B /* DevicesCell.swift */; };
+		0451546C1FFE287D00C9BA66 /* Devices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451546B1FFE287D00C9BA66 /* Devices.swift */; };
+		045154761FFF750700C9BA66 /* LeftViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045154751FFF750600C9BA66 /* LeftViewCell.swift */; };
+		046246D42016C3D700FE4FD0 /* SendCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046246D32016C3D700FE4FD0 /* SendCode.swift */; };
+		0494B65A1FF346D2000441D0 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B6591FF346D2000441D0 /* RegisterVC.swift */; };
+		0494B65C1FF36A93000441D0 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B65B1FF36A93000441D0 /* TextFieldView.swift */; };
+		04F1C11C1FFB882300AB00F4 /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1C11B1FFB882300AB00F4 /* NetWork.swift */; };
+		04F1C1231FFCBD7700AB00F4 /* PersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1C1221FFCBD7700AB00F4 /* PersonalInfo.swift */; };
+		657EDDD2D9C00FF529CB8B26 /* Pods_BerryBit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D683E0751C3CF68350A74791 /* Pods_BerryBit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		042761511FD521270005DB4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 042761341FD521260005DB4E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0427613B1FD521260005DB4E;
+			remoteInfo = BerryBit;
+		};
+		0427615C1FD521270005DB4E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 042761341FD521260005DB4E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0427613B1FD521260005DB4E;
+			remoteInfo = BerryBit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		04268DE91FDE15B100DC0B6D /* README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
+		04268DEC1FDE175D00DC0B6D /* PublicClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClass.swift; sourceTree = "<group>"; };
+		04268DF11FDE25CA00DC0B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0427613C1FD521260005DB4E /* BerryBit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BerryBit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0427613F1FD521260005DB4E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		042761411FD521260005DB4E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		042761461FD521260005DB4E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		042761491FD521260005DB4E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0427614B1FD521260005DB4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		042761501FD521270005DB4E /* BerryBitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerryBitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		042761541FD521270005DB4E /* BerryBitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryBitTests.swift; sourceTree = "<group>"; };
+		042761561FD521270005DB4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0427615B1FD521270005DB4E /* BerryBitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerryBitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0427615F1FD521270005DB4E /* BerryBitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerryBitUITests.swift; sourceTree = "<group>"; };
+		042761611FD521270005DB4E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0427616F1FD530D30005DB4E /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		042761711FD530EE0005DB4E /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		0428D29A200F22C200D3EF0B /* BlueTooth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueTooth.swift; sourceTree = "<group>"; };
+		0428D29C200F405900D3EF0B /* PeripheralModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeripheralModel.swift; sourceTree = "<group>"; };
+		0428D2A02010768800D3EF0B /* BlueToothVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueToothVC.swift; sourceTree = "<group>"; };
+		0428D2A22010802600D3EF0B /* DevicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesCell.swift; sourceTree = "<group>"; };
+		0451546B1FFE287D00C9BA66 /* Devices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Devices.swift; sourceTree = "<group>"; };
+		045154751FFF750600C9BA66 /* LeftViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftViewCell.swift; sourceTree = "<group>"; };
+		046246D32016C3D700FE4FD0 /* SendCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCode.swift; sourceTree = "<group>"; };
+		0494B6591FF346D2000441D0 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		0494B65B1FF36A93000441D0 /* TextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		04F1C11B1FFB882300AB00F4 /* NetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
+		04F1C1221FFCBD7700AB00F4 /* PersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfo.swift; sourceTree = "<group>"; };
+		D683E0751C3CF68350A74791 /* Pods_BerryBit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BerryBit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E971D3EB2501240845327EF0 /* Pods-BerryBit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BerryBit.release.xcconfig"; path = "Pods/Target Support Files/Pods-BerryBit/Pods-BerryBit.release.xcconfig"; sourceTree = "<group>"; };
+		F6637D2103E23DCBADD76F44 /* Pods-BerryBit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BerryBit.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BerryBit/Pods-BerryBit.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		042761391FD521260005DB4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				657EDDD2D9C00FF529CB8B26 /* Pods_BerryBit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0427614D1FD521270005DB4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		042761581FD521270005DB4E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		040ED40E1FFB64750077D66A /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				04F1C11B1FFB882300AB00F4 /* NetWork.swift */,
+			);
+			path = NetWork;
+			sourceTree = "<group>";
+		};
+		04268DEB1FDE173E00DC0B6D /* PulbicClass */ = {
+			isa = PBXGroup;
+			children = (
+				04268DEC1FDE175D00DC0B6D /* PublicClass.swift */,
+				046246D32016C3D700FE4FD0 /* SendCode.swift */,
+			);
+			path = PulbicClass;
+			sourceTree = "<group>";
+		};
+		04268DF31FDE286000DC0B6D /* 分类 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "分类";
+			sourceTree = "<group>";
+		};
+		042761331FD521260005DB4E = {
+			isa = PBXGroup;
+			children = (
+				0428D299200F22AB00D3EF0B /* BlueTooth */,
+				04F1C1211FFCBD6200AB00F4 /* Model */,
+				040ED40E1FFB64750077D66A /* NetWork */,
+				04268DF31FDE286000DC0B6D /* 分类 */,
+				04268DEB1FDE173E00DC0B6D /* PulbicClass */,
+				0427616D1FD530A50005DB4E /* HomePage */,
+				0427616E1FD530A50005DB4E /* LoginPage */,
+				0427613E1FD521260005DB4E /* BerryBit */,
+				042761531FD521270005DB4E /* BerryBitTests */,
+				0427615E1FD521270005DB4E /* BerryBitUITests */,
+				0427613D1FD521260005DB4E /* Products */,
+				6856077A636681DC40721D2F /* Pods */,
+				163BAF466A92D10D20768845 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0427613D1FD521260005DB4E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0427613C1FD521260005DB4E /* BerryBit.app */,
+				042761501FD521270005DB4E /* BerryBitTests.xctest */,
+				0427615B1FD521270005DB4E /* BerryBitUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0427613E1FD521260005DB4E /* BerryBit */ = {
+			isa = PBXGroup;
+			children = (
+				0427613F1FD521260005DB4E /* AppDelegate.swift */,
+				042761411FD521260005DB4E /* ViewController.swift */,
+				042761461FD521260005DB4E /* Assets.xcassets */,
+				042761481FD521260005DB4E /* LaunchScreen.storyboard */,
+				0427614B1FD521260005DB4E /* Info.plist */,
+				04268DE91FDE15B100DC0B6D /* README.rtf */,
+				04268DF21FDE25CA00DC0B6D /* Localizable.strings */,
+			);
+			path = BerryBit;
+			sourceTree = "<group>";
+		};
+		042761531FD521270005DB4E /* BerryBitTests */ = {
+			isa = PBXGroup;
+			children = (
+				042761541FD521270005DB4E /* BerryBitTests.swift */,
+				042761561FD521270005DB4E /* Info.plist */,
+			);
+			path = BerryBitTests;
+			sourceTree = "<group>";
+		};
+		0427615E1FD521270005DB4E /* BerryBitUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0427615F1FD521270005DB4E /* BerryBitUITests.swift */,
+				042761611FD521270005DB4E /* Info.plist */,
+			);
+			path = BerryBitUITests;
+			sourceTree = "<group>";
+		};
+		0427616D1FD530A50005DB4E /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				042761711FD530EE0005DB4E /* HomeVC.swift */,
+				045154751FFF750600C9BA66 /* LeftViewCell.swift */,
+				0428D2A02010768800D3EF0B /* BlueToothVC.swift */,
+				0428D2A22010802600D3EF0B /* DevicesCell.swift */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
+		0427616E1FD530A50005DB4E /* LoginPage */ = {
+			isa = PBXGroup;
+			children = (
+				0427616F1FD530D30005DB4E /* LoginVC.swift */,
+				0494B6591FF346D2000441D0 /* RegisterVC.swift */,
+				0494B65B1FF36A93000441D0 /* TextFieldView.swift */,
+			);
+			path = LoginPage;
+			sourceTree = "<group>";
+		};
+		0428D299200F22AB00D3EF0B /* BlueTooth */ = {
+			isa = PBXGroup;
+			children = (
+				0428D29A200F22C200D3EF0B /* BlueTooth.swift */,
+				0428D29C200F405900D3EF0B /* PeripheralModel.swift */,
+			);
+			path = BlueTooth;
+			sourceTree = "<group>";
+		};
+		04F1C1211FFCBD6200AB00F4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				04F1C1221FFCBD7700AB00F4 /* PersonalInfo.swift */,
+				0451546B1FFE287D00C9BA66 /* Devices.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		163BAF466A92D10D20768845 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D683E0751C3CF68350A74791 /* Pods_BerryBit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6856077A636681DC40721D2F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F6637D2103E23DCBADD76F44 /* Pods-BerryBit.debug.xcconfig */,
+				E971D3EB2501240845327EF0 /* Pods-BerryBit.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0427613B1FD521260005DB4E /* BerryBit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 042761641FD521270005DB4E /* Build configuration list for PBXNativeTarget "BerryBit" */;
+			buildPhases = (
+				0B1EA5DA89D79424D459DB9C /* [CP] Check Pods Manifest.lock */,
+				042761381FD521260005DB4E /* Sources */,
+				042761391FD521260005DB4E /* Frameworks */,
+				0427613A1FD521260005DB4E /* Resources */,
+				91996A2E39FD4B544FCE9F73 /* [CP] Embed Pods Frameworks */,
+				CB1C6291386540D85DF15F75 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BerryBit;
+			productName = BerryBit;
+			productReference = 0427613C1FD521260005DB4E /* BerryBit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0427614F1FD521270005DB4E /* BerryBitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 042761671FD521270005DB4E /* Build configuration list for PBXNativeTarget "BerryBitTests" */;
+			buildPhases = (
+				0427614C1FD521270005DB4E /* Sources */,
+				0427614D1FD521270005DB4E /* Frameworks */,
+				0427614E1FD521270005DB4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				042761521FD521270005DB4E /* PBXTargetDependency */,
+			);
+			name = BerryBitTests;
+			productName = BerryBitTests;
+			productReference = 042761501FD521270005DB4E /* BerryBitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		0427615A1FD521270005DB4E /* BerryBitUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0427616A1FD521270005DB4E /* Build configuration list for PBXNativeTarget "BerryBitUITests" */;
+			buildPhases = (
+				042761571FD521270005DB4E /* Sources */,
+				042761581FD521270005DB4E /* Frameworks */,
+				042761591FD521270005DB4E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0427615D1FD521270005DB4E /* PBXTargetDependency */,
+			);
+			name = BerryBitUITests;
+			productName = BerryBitUITests;
+			productReference = 0427615B1FD521270005DB4E /* BerryBitUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		042761341FD521260005DB4E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = BerryBit;
+				TargetAttributes = {
+					0427613B1FD521260005DB4E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = J6C2T28JK7;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+					};
+					0427614F1FD521270005DB4E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = WJJ9LWS977;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 0427613B1FD521260005DB4E;
+					};
+					0427615A1FD521270005DB4E = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = WJJ9LWS977;
+						LastSwiftMigration = 0920;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 0427613B1FD521260005DB4E;
+					};
+				};
+			};
+			buildConfigurationList = 042761371FD521260005DB4E /* Build configuration list for PBXProject "BerryBit" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+			);
+			mainGroup = 042761331FD521260005DB4E;
+			productRefGroup = 0427613D1FD521260005DB4E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0427613B1FD521260005DB4E /* BerryBit */,
+				0427614F1FD521270005DB4E /* BerryBitTests */,
+				0427615A1FD521270005DB4E /* BerryBitUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0427613A1FD521260005DB4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0427614A1FD521260005DB4E /* LaunchScreen.storyboard in Resources */,
+				04268DF01FDE25CA00DC0B6D /* Localizable.strings in Resources */,
+				04268DEA1FDE15B100DC0B6D /* README.rtf in Resources */,
+				042761471FD521260005DB4E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0427614E1FD521270005DB4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		042761591FD521270005DB4E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B1EA5DA89D79424D459DB9C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BerryBit-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		91996A2E39FD4B544FCE9F73 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BerryBit/Pods-BerryBit-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BerryBit/Pods-BerryBit-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CB1C6291386540D85DF15F75 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BerryBit/Pods-BerryBit-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		042761381FD521260005DB4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0428D29B200F22C200D3EF0B /* BlueTooth.swift in Sources */,
+				042761421FD521260005DB4E /* ViewController.swift in Sources */,
+				0494B65C1FF36A93000441D0 /* TextFieldView.swift in Sources */,
+				045154761FFF750700C9BA66 /* LeftViewCell.swift in Sources */,
+				04F1C11C1FFB882300AB00F4 /* NetWork.swift in Sources */,
+				0428D2A12010768800D3EF0B /* BlueToothVC.swift in Sources */,
+				04268DED1FDE175D00DC0B6D /* PublicClass.swift in Sources */,
+				042761721FD530EE0005DB4E /* HomeVC.swift in Sources */,
+				0494B65A1FF346D2000441D0 /* RegisterVC.swift in Sources */,
+				042761401FD521260005DB4E /* AppDelegate.swift in Sources */,
+				0451546C1FFE287D00C9BA66 /* Devices.swift in Sources */,
+				0428D29D200F405900D3EF0B /* PeripheralModel.swift in Sources */,
+				042761701FD530D30005DB4E /* LoginVC.swift in Sources */,
+				04F1C1231FFCBD7700AB00F4 /* PersonalInfo.swift in Sources */,
+				046246D42016C3D700FE4FD0 /* SendCode.swift in Sources */,
+				0428D2A32010802600D3EF0B /* DevicesCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0427614C1FD521270005DB4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				042761551FD521270005DB4E /* BerryBitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		042761571FD521270005DB4E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				042761601FD521270005DB4E /* BerryBitUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		042761521FD521270005DB4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0427613B1FD521260005DB4E /* BerryBit */;
+			targetProxy = 042761511FD521270005DB4E /* PBXContainerItemProxy */;
+		};
+		0427615D1FD521270005DB4E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0427613B1FD521260005DB4E /* BerryBit */;
+			targetProxy = 0427615C1FD521270005DB4E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		04268DF21FDE25CA00DC0B6D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04268DF11FDE25CA00DC0B6D /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		042761481FD521260005DB4E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				042761491FD521260005DB4E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		042761621FD521270005DB4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		042761631FD521270005DB4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		042761651FD521270005DB4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F6637D2103E23DCBADD76F44 /* Pods-BerryBit.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = J6C2T28JK7;
+				INFOPLIST_FILE = BerryBit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BerryBit.BerryBit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		042761661FD521270005DB4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E971D3EB2501240845327EF0 /* Pods-BerryBit.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = J6C2T28JK7;
+				INFOPLIST_FILE = BerryBit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.BerryBit.BerryBit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		042761681FD521270005DB4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = WJJ9LWS977;
+				INFOPLIST_FILE = BerryBitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BerryBit.BerryBitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BerryBit.app/BerryBit";
+			};
+			name = Debug;
+		};
+		042761691FD521270005DB4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = WJJ9LWS977;
+				INFOPLIST_FILE = BerryBitTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BerryBit.BerryBitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BerryBit.app/BerryBit";
+			};
+			name = Release;
+		};
+		0427616B1FD521270005DB4E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = WJJ9LWS977;
+				INFOPLIST_FILE = BerryBitUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BerryBit.BerryBitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = BerryBit;
+			};
+			name = Debug;
+		};
+		0427616C1FD521270005DB4E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				DEVELOPMENT_TEAM = WJJ9LWS977;
+				INFOPLIST_FILE = BerryBitUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BerryBit.BerryBitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
+				TEST_TARGET_NAME = BerryBit;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		042761371FD521260005DB4E /* Build configuration list for PBXProject "BerryBit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				042761621FD521270005DB4E /* Debug */,
+				042761631FD521270005DB4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		042761641FD521270005DB4E /* Build configuration list for PBXNativeTarget "BerryBit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				042761651FD521270005DB4E /* Debug */,
+				042761661FD521270005DB4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		042761671FD521270005DB4E /* Build configuration list for PBXNativeTarget "BerryBitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				042761681FD521270005DB4E /* Debug */,
+				042761691FD521270005DB4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0427616A1FD521270005DB4E /* Build configuration list for PBXNativeTarget "BerryBitUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0427616B1FD521270005DB4E /* Debug */,
+				0427616C1FD521270005DB4E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 042761341FD521260005DB4E /* Project object */;
+}
