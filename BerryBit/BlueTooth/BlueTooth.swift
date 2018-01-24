@@ -41,6 +41,8 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var macdata = String()      // 暂存连接设备的mac地址
     //var MacData = String()      // 连接设备的mac地址
     var Battery : Int = 0       // 电池电量
+    var HardVersion = String()  // 硬件版本号
+    var softwareVersion = String()  // 软件版本号
     
     // 单例
     static let shareInstance = BlueTooth()
@@ -157,8 +159,8 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             if uuid == "Battery Level" {
                 self.char_battery = characteristic
                 print("uuid = \(uuid)")
-                // 获取电池电量
-                SendCode().SendBatteryCode()
+//                // 获取电池电量
+//                SendCode().SendBatteryCode()
                 // 对手环进行时间同步
                 SendCode().SendSynchronizationTimeCode()
                 // 获取手环设备的信息（硬件版本号、软件版本号）
@@ -171,6 +173,7 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let value = [UInt8](characteristic.value!)
         if value.count == 1 {
+            print("电池电量 = \(Int(value.first!))")
             // 如果特征值只有一位，则说明该特征值为电池电量
             self.Battery = Int(value.first!)
             delegate?.DischangeBattery!(value: Int(value.first!))
@@ -271,47 +274,51 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         delegate?.DiscoverPeripheral!(device: model)
     }
     
-    // MARK: 特征值改变 ---- 手环信息
-    func MatchMessage(value: [UInt8]) {
-        let version = SendCode().ParseingMatchMessage(value: value)
-        delegate?.DidReceiveMatchMessage!(heardVersion: version.heard, SoftWareVersion: version.software)
-        
-        
-    }
-    
-    // MARK: 特征值改变 ---- 数据数量
-    func DataCount(value: [UInt8]) {
-        
-    }
-    
-    // MARK: 特征值改变 ---- 数据接收
-    func ReceiveData(value: [UInt8]) {
-        
-    }
-    
-    // MARK: 特征值改变 ---- 指令接收成功
-    func CodeReceiveSuccess(value: Int) {
-        
-    }
-    
-    // MARK: 特征值改变 ---- 指令接收失败
-    func CodeReceiveFail(value: Int) {
-        
-    }
-    
-    // MARK: 特征值改变 ---- 数据接收完毕
-    func ReceiveDataOver() {
-        
-    }
-    
     // MARK: 特征值改变 ---- 固件更新校验是否成功
     func FirmwareUpdateCheckResults(value: Int) {
+        print("特征值改变 ---- 固件更新校验是否成功 = \(value)")
         if value == 1 {
             delegate?.DidReceiveFirmwareUpdateState!(state: true)
             return
         }
         delegate?.DidReceiveFirmwareUpdateState!(state: false)
     }
+    
+    // MARK: 特征值改变 ---- 手环信息
+    func MatchMessage(value: [UInt8]) {
+        print("特征值改变 ---- 手环信息 = \(value)")
+        let version = SendCode().ParseingMatchMessage(value: value)
+        self.HardVersion = version.heard
+        self.softwareVersion = version.software
+        delegate?.DidReceiveMatchMessage!(heardVersion: version.heard, SoftWareVersion: version.software)
+    }
+    
+    // MARK: 特征值改变 ---- 数据数量
+    func DataCount(value: [UInt8]) {
+        print("特征值改变 ---- 数据数量 = \(value)")
+    }
+    
+    // MARK: 特征值改变 ---- 数据接收
+    func ReceiveData(value: [UInt8]) {
+        print("特征值改变 ---- 数据接收 = \(value)")
+    }
+    
+    // MARK: 特征值改变 ---- 指令接收成功
+    func CodeReceiveSuccess(value: Int) {
+        print("特征值改变 ---- 指令接收成功 = \(value)")
+    }
+    
+    // MARK: 特征值改变 ---- 指令接收失败
+    func CodeReceiveFail(value: Int) {
+        print("特征值改变 ---- 指令接收失败 = \(value)")
+    }
+    
+    // MARK: 特征值改变 ---- 数据接收完毕
+    func ReceiveDataOver() {
+        print("特征值改变 ---- 数据接收完毕")
+    }
+    
+    
     
     // MARK:
     
