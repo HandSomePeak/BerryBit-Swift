@@ -313,7 +313,7 @@
 				TargetAttributes = {
 					0427613B1FD521260005DB4E = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = J6C2T28JK7;
+						DevelopmentTeam = 2H7Y52T64G;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
@@ -626,7 +626,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = J6C2T28JK7;
+				DEVELOPMENT_TEAM = 2H7Y52T64G;
 				INFOPLIST_FILE = BerryBit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -643,7 +643,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = J6C2T28JK7;
+				DEVELOPMENT_TEAM = 2H7Y52T64G;
 				INFOPLIST_FILE = BerryBit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
