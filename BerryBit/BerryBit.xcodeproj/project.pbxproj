@@ -126,20 +126,12 @@
 			path = PulbicClass;
 			sourceTree = "<group>";
 		};
-		04268DF31FDE286000DC0B6D /* 分类 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "分类";
-			sourceTree = "<group>";
-		};
 		042761331FD521260005DB4E = {
 			isa = PBXGroup;
 			children = (
 				0428D299200F22AB00D3EF0B /* BlueTooth */,
 				04F1C1211FFCBD6200AB00F4 /* Model */,
 				040ED40E1FFB64750077D66A /* NetWork */,
-				04268DF31FDE286000DC0B6D /* 分类 */,
 				04268DEB1FDE173E00DC0B6D /* PulbicClass */,
 				0427616D1FD530A50005DB4E /* HomePage */,
 				0427616E1FD530A50005DB4E /* LoginPage */,

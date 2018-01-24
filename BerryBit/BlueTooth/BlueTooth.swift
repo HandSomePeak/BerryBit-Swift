@@ -207,7 +207,7 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
 
     // MARK: 发送指令反馈
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        
+        print("发送指令反馈")
     }
     
     // MARK: 外设连接失败
