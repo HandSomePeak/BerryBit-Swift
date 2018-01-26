@@ -23,6 +23,21 @@ import CoreBluetooth
     @objc optional func DidReceiveFirmwareUpdateState(state: Bool)
     // 手环信息（硬件版本号、软件版本号）
     @objc optional func DidReceiveMatchMessage(heardVersion: String, SoftWareVersion: String)
+    // 数据数量
+    @objc optional func DidReceiveMessageCount(value: Int)
+    // 数据接收
+    @objc optional func DidReceiveMessageData(value: Int)
+    // 指令接收成功
+    @objc optional func DidReceiveCodeSuccess(value: UInt8)
+    // 指令接收失败
+    @objc optional func DidReceiveCodeFail(value: UInt8)
+    // 数据接收完毕
+    @objc optional func DidReceiveMessageOver()
+    // 开始封装数据并上传
+    @objc optional func DidStartUploadData()
+    // 手环绑定状态
+    @objc optional func BlueToothDidConnectedState(state: Bool)
+    
     
 }
 
@@ -43,6 +58,9 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var Battery : Int = 0       // 电池电量
     var HardVersion = String()  // 硬件版本号
     var softwareVersion = String()  // 软件版本号
+    
+    var receiveCount = 0        // 已接收数据的个数
+    var messageCount = 0        // 数据总个数
     
     // 单例
     static let shareInstance = BlueTooth()
@@ -159,8 +177,6 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             if uuid == "Battery Level" {
                 self.char_battery = characteristic
                 print("uuid = \(uuid)")
-//                // 获取电池电量
-//                SendCode().SendBatteryCode()
                 // 对手环进行时间同步
                 SendCode().SendSynchronizationTimeCode()
                 // 获取手环设备的信息（硬件版本号、软件版本号）
@@ -196,9 +212,9 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             case 0x15:  // 数据接收
                 self.ReceiveData(value: value)
             case 0x2D:  // 指令接收成功
-                self.CodeReceiveSuccess(value: Int(value[5]))
+                delegate?.DidReceiveCodeSuccess!(value: value[5])
             case 0x2E:  // 指令接收失败
-                self.CodeReceiveFail(value: Int(value[5]))
+                delegate?.DidReceiveCodeFail!(value: value[5])
             case 0x58:  // 数据接收完毕
                 self.ReceiveDataOver()
             default:
@@ -290,32 +306,40 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         let version = SendCode().ParseingMatchMessage(value: value)
         self.HardVersion = version.heard
         self.softwareVersion = version.software
-        delegate?.DidReceiveMatchMessage!(heardVersion: version.heard, SoftWareVersion: version.software)
+        SendCode().SendBatteryCode()    // 发送获取电池电量的指令
+        delegate?.BlueToothDidConnectedState!(state: true) // 蓝牙绑定状态的协议
+        delegate?.DidReceiveMatchMessage!(heardVersion: version.heard, SoftWareVersion: version.software)   // 接收到手环信息的协议
     }
     
     // MARK: 特征值改变 ---- 数据数量
     func DataCount(value: [UInt8]) {
-        print("特征值改变 ---- 数据数量 = \(value)")
+        self.receiveCount = 0
+        self.messageCount = SendCode().ParseingMessageCount(value: value)
+        print("特征值改变 ---- 数据数量 = \(self.messageCount)")
+        delegate?.DidReceiveMessageCount!(value: self.messageCount)
     }
     
     // MARK: 特征值改变 ---- 数据接收
     func ReceiveData(value: [UInt8]) {
-        print("特征值改变 ---- 数据接收 = \(value)")
-    }
-    
-    // MARK: 特征值改变 ---- 指令接收成功
-    func CodeReceiveSuccess(value: Int) {
-        print("特征值改变 ---- 指令接收成功 = \(value)")
-    }
-    
-    // MARK: 特征值改变 ---- 指令接收失败
-    func CodeReceiveFail(value: Int) {
-        print("特征值改变 ---- 指令接收失败 = \(value)")
+        let count = SendCode().ParseingData(value: value)
+        self.receiveCount += count
+        print("特征值改变 ---- 已数据接收 = \(self.receiveCount)")
+        delegate?.DidReceiveMessageData!(value: self.receiveCount)
     }
     
     // MARK: 特征值改变 ---- 数据接收完毕
     func ReceiveDataOver() {
         print("特征值改变 ---- 数据接收完毕")
+        delegate?.DidReceiveMessageOver!()
+        // 保存数据到数据库
+        if let app = UIApplication.shared.delegate as? AppDelegate {
+            app.cdh().backgroundSaveContext()
+            print("开始， 保存数据到数据库")
+            DispatchQueue.main.asyncAfter(deadline: (DispatchTime.now() + 1), execute: {
+                print("结束, 开始上传数据")
+                self.delegate?.DidStartUploadData!()
+            })
+        }
     }
     
     
