@@ -24,7 +24,7 @@ class SendCode: NSObject {
     func SendMatchMessageCode() {
         print("发送获取手环信息（硬件版本号、软件版本号）的指令")
         var ack : [UInt8] = [UInt8].init(repeating: 0x00, count: 5)
-        ack[0] = 0xAA; ack[1] = 0x55; ack[2] = 0x05; ack[3] = 0x56;
+        ack[0] = 0xAA; ack[1] = 0x55; ack[2] = 0x05; ack[3] = 0x55;
         ack[4] = ack[2] &+ ack[3]
         self.SendCode(ack: ack)
     }

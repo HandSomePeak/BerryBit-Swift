@@ -37,14 +37,19 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         PublicClass.SetSVProgressHUD()
         ble.delegate = self
         
         // 制作基础的侧滑框架
         CreateBaseAnimateView()
-    
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ble.delegate = self
+        self.RefreshTitleLabel()
     }
     
     // MARK: BlueToothDelegate 协议方法
@@ -55,6 +60,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
         default:
             print("系统蓝牙关闭")
         }
+    }
+    
+    // MARK: 手环连接状态
+    func DidConnectedState(state: Bool) {
+        self.RefreshTitleLabel()
     }
     
     // MARK: 侧滑框架
@@ -287,7 +297,6 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
     
     // MARK: 上传按钮方法
     @objc func MainButtonMethod(button: UIButton) {
-        print("上传按钮方法")
         if ble.Manger.state != .poweredOn{
             SVProgressHUD.showInfo(withStatus: "蓝牙系统已关闭")
             return
@@ -298,6 +307,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
         }
         else {
             print("上传数据")
+            
+            
         }
         
     }
@@ -342,6 +353,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
     @objc func RightButtonMethod(button: UIButton) {
         
         
+    }
+    
+    // MARK: 更新标题
+    func RefreshTitleLabel() {
+        titleLabel.text = ble.ExchangeMac
     }
     
     override func didReceiveMemoryWarning() {

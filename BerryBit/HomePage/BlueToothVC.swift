@@ -17,18 +17,48 @@ class BlueToothVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        ble.delegate = self
+        print("蓝牙扫描界面")
         self.CreateTableView()
         
         ble.scanDevicesFunc()
     }
 
-    // MARK: BlueToothDelegate
-    func DiscoverPeripheral(device: PeripheralModel) {
-        m_array.append(device)
-        table.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ble.delegate = self
     }
+    
+    // MARK: BlueToothDelegate
+    // 发现外围设备
+    func DiscoverPeripheral(device: PeripheralModel) {
+        if !m_array.contains(device) {
+            m_array.append(device)
+            table.reloadData()
+        }
+    }
+    
+    // 手环连接状态
+    func DidConnectedState(state: Bool) {
+        if state {
+            print("手环已连接")
+            // 对手环进行时间同步
+            SendCode().SendSynchronizationTimeCode()
+            // 获取手环设备的信息（硬件版本号、软件版本号）
+            SendCode().SendMatchMessageCode()
+            SVProgressHUD.showSuccess(withStatus: "连接手环成功")
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
+                self.dismiss(animated: true, completion: nil)
+            })
+        }
+        else {
+            print("手环未连接")
+        }
+    }
+    
+    
+    
+    
+    
     
     // MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
