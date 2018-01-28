@@ -246,6 +246,7 @@ class SendCode: NSObject {
     // MARK: 保存数据到数据库
     func SaveDataToDB(time: String, data: String, type: String) {
         print("保存数据到数据库 = \(time), \(data), \(type)")
+        CoreDataHelper.shareInstance.addCoreData(time: time, data: data, type: type, mac: BlueTooth.shareInstance.ExchangeMac)
     }
     
     // MARK: 十六进制字符串转十进制整数

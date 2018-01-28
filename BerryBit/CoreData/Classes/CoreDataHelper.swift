@@ -28,7 +28,7 @@ class CoreDataHelper: NSObject {
     
     // MARK: 返回应用程序文档目录的路径
     func applicationDocumentDirectory() -> String {
-        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+        let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.documentDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).first!
         print("返回应用程序文档目录的路径 = \(path)")
         return path
     }
@@ -77,6 +77,7 @@ class CoreDataHelper: NSObject {
         self.context.parent = self.parentContext
         self.context.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
         
+        self.setupCoreData()
     }
     
     func loadStore() {
@@ -110,7 +111,6 @@ class CoreDataHelper: NSObject {
             else {
                 print("context 保存更改到持久化存储区 -- 失败")
             }
-            
         }
         else {
             print("context 不用保存, 没有更改")
@@ -134,7 +134,15 @@ class CoreDataHelper: NSObject {
             }
         }
     }
-    
+
+    func addCoreData(time: String, data: String, type: String, mac: String) {
+        let entity = NSEntityDescription.insertNewObject(forEntityName: "Measure", into: CoreDataHelper.shareInstance.parentContext) as! Measure
+        entity.data = data
+        entity.time = time
+        entity.type = type
+        entity.mac = mac
+        CoreDataHelper.shareInstance.backgroundSaveContext()
+    }
     
     
 }

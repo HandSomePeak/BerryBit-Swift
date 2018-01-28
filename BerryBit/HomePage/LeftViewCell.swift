@@ -49,7 +49,7 @@ class LeftViewCell: UITableViewCell {
         let imv_w = 40
         
         textLab?.text = string
-        detailLab?.text = "123"
+        
         
         imv?.frame = CGRect.init(x: 0, y: 0, width: imv_w, height: Int(cell_h))
         imv?.sizeToFit()
@@ -61,12 +61,27 @@ class LeftViewCell: UITableViewCell {
         
         imv?.isHidden = false
         detailLab?.isHidden = true
-        
+        let ble = BlueTooth.shareInstance
         switch indexPath.row {
         case 1:
+            if ble.Peripheral != nil && ble.Peripheral.state == .connected {
+                detailLab?.text = "已连接"
+            }
+            else {
+                detailLab?.text = "未连接"
+            }
             detailLab?.frame = CGRect.init(x: 0, y: 0, width: (imv?.frame.origin.x)! - 5, height: cell_h)
             detailLab?.isHidden = false
         case 2:
+            if ble.Peripheral != nil && ble.Peripheral.state == .connected {
+                detailLab?.text = String(ble.Battery) + "%"
+                if ble.Battery == 0 {
+                    detailLab?.text = ""
+                }
+            }
+            else {
+                detailLab?.text = ""
+            }
             imv?.isHidden = true
             detailLab?.isHidden = false
             detailLab?.frame = CGRect.init(x: 0, y: 0, width: cell_w - (imv?.frame.size.width)! / 2.0, height: cell_h)

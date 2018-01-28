@@ -64,6 +64,12 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
     
     // MARK: 手环连接状态
     func DidConnectedState(state: Bool) {
+        print("主页接收到蓝牙状态改变的值 = \(state)")
+        self.RefreshTitleLabel()
+    }
+    
+    // MARK: 电池电量
+    func DischangeBattery(value: Int) {
         self.RefreshTitleLabel()
     }
     
@@ -248,29 +254,33 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
         mainButton.adjustsImageWhenHighlighted = false
         mainButton.layer.masksToBounds = true
         mainButton.layer.cornerRadius = bu_h / 2.0
+        mainButton.tag = 0
         mainButton.addTarget(self, action: #selector(MainButtonMethod(button:)), for: .touchUpInside)
         MAINVIEW.addSubview(mainButton)
-        self.SetMainButtonAttribute(index: 0)
+        self.SetMainButtonAttribute(index: 0, percent: 0)
         
     }
     
     // 修改按钮和提示信息
-    func SetMainButtonAttribute(index: NSInteger) {
+    func SetMainButtonAttribute(index: NSInteger, percent: NSInteger) {
         DispatchQueue.main.async {
             let left : CGFloat = PublicClass.WidthWith(width: 36)
             let view_w : CGFloat = self.MAINVIEW.frame.size.width
-            // 0连接设备， 1同步数据， 2正在同步
+            // 0连接设备， 1同步数据， 2正在同步, 3同步完成
             let array_1 = [NSLocalizedString("HomeVC_11", comment: ""),
                          NSLocalizedString("HomeVC_12", comment: ""),
+                         NSLocalizedString("HomeVC_13", comment: ""),
                          NSLocalizedString("HomeVC_13", comment: "")]
             
             let array_2 = [NSLocalizedString("HomeVC_14", comment: ""),
                          NSLocalizedString("HomeVC_15", comment: ""),
-                         NSLocalizedString("HomeVC_16", comment: "")]
+                         NSLocalizedString("HomeVC_16", comment: "") + " ~ " + String(percent) + "%",
+                         NSLocalizedString("HomeVC_17", comment: "")]
             
             let array_3 = [PublicClass.Color(RGB: 0x97dcff),
                            PublicClass.Color(RGB: 0x97dcff),
-                           PublicClass.Color(RGB: 0x97dcff)]
+                           PublicClass.Color(RGB: 0xfc5a9e),
+                           PublicClass.Color(RGB: 0xfc5a9e)]
             
             // 提示信息
             self.messageLabel.attributedText = PublicClass().LineSpacing(string: array_1[index])
@@ -288,7 +298,11 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
             case 1: // 同步数据
                 self.mainButton.layer.insertSublayer(PublicClass().SetGradientLayer(button: self.mainButton, width: 0, layer: &self.gradientLayer), at: 0)
             case 2: // 正在同步
-                break
+                let wid : CGFloat = view_w * CGFloat(percent) / 100
+                print("wid = \(wid), percent = \(percent)")
+                self.mainButton.layer.insertSublayer(PublicClass().SetGradientLayer(button: self.mainButton, width: wid, layer: &self.gradientLayer), at: 0)
+            case 3: // 同步完成
+                self.mainButton.layer.insertSublayer(PublicClass().SetGradientLayer(button: self.mainButton, width: view_w, layer: &self.gradientLayer), at: 0)
             default:
                 break
             }
@@ -305,12 +319,19 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
             let vc = BlueToothVC()
             self.present(vc, animated: true, completion: nil)
         }
-        else {
-            print("上传数据")
-            
-            
+        else if ble.Peripheral != nil && ble.Peripheral.state == .connected {
+            print("button.tag = \(button.tag)")
+            switch button.tag {
+            case 1:
+                // 同步数据
+                SendCode().SendMessageNumberCode()
+            case 2:
+                // 正在同步
+                print("正在同步数据...")
+            default:
+                break
+            }
         }
-        
     }
     
     // MARK: 遮挡主页的按钮方法
@@ -358,6 +379,46 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
     // MARK: 更新标题
     func RefreshTitleLabel() {
         titleLabel.text = ble.ExchangeMac
+        if ble.Peripheral != nil && ble.Peripheral.state != .connected {
+            mainButton.tag = 0
+            self.SetMainButtonAttribute(index: 0, percent: 0)
+        }
+        else if ble.Peripheral != nil && ble.Peripheral.state == .connected {
+            if mainButton.tag == 0 {
+                mainButton.tag = 1
+                self.SetMainButtonAttribute(index: 1, percent: 0)
+            }
+        }
+        
+        tableview.reloadData()
+    }
+    
+    // MARK: BlueToothDelegate协议 数据数量
+    func DidReceiveMessageCount(value: Int) {
+        mainButton.tag = 2
+        self.SetMainButtonAttribute(index: 2, percent: 0)
+        // 开始同步数据
+        SendCode().SendSynchronizationDataCode()
+    }
+    
+    // MARK: 数据接收个数
+    func DidReceiveMessageData(value: Int) {
+        let percent : NSInteger = NSInteger(Double(ble.receiveCount) / Double(ble.messageCount) * 100)
+        print("数据接收个数 = \(percent)")
+        self.SetMainButtonAttribute(index: 2, percent: percent)
+    }
+    
+    // MARK: 同步完成
+    func DidReceiveMessageOver() {
+        print("同步完成")
+        self.mainButton.tag = 3
+        self.SetMainButtonAttribute(index: 3, percent: 0)
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 4.0) {
+            if self.ble.Peripheral != nil && self.ble.Peripheral.state == .connected {
+                self.mainButton.tag = 1
+                self.SetMainButtonAttribute(index: 1, percent: 0)
+            }
+        }
     }
     
     override func didReceiveMemoryWarning() {

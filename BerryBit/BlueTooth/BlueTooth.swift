@@ -100,6 +100,10 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             delegate?.ManagerDidUpdateState?(open: true)
         default:
             delegate?.ManagerDidUpdateState?(open: false)
+            self.ConnectedState(state: false)
+            if self.Peripheral != nil && self.Manger != nil {
+                self.Manger.cancelPeripheralConnection(self.Peripheral)
+            }
         }
     }
     
@@ -353,22 +357,19 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         print("特征值改变 ---- 数据接收完毕")
         delegate?.DidReceiveMessageOver?()
         // 保存数据到数据库
-        if let app = UIApplication.shared.delegate as? AppDelegate {
-            app.cdh().backgroundSaveContext()
-            print("开始， 保存数据到数据库")
-            DispatchQueue.main.asyncAfter(deadline: (DispatchTime.now() + 1), execute: {
-                print("结束, 开始上传数据")
-                self.delegate?.DidStartUploadData?()
-            })
-        }
+        CoreDataHelper.shareInstance.backgroundSaveContext()
+        DispatchQueue.main.asyncAfter(deadline: (DispatchTime.now() + 1), execute: {
+            self.delegate?.DidStartUploadData?()
+        })
     }
     
     
     
     // MARK: 手环连接状态
     func ConnectedState(state: Bool) {
-        if state {
+        if state == false {
             self.ExchangeMac = String()
+            self.Battery = 0
         }
         delegate?.DidConnectedState?(state: state)
     }
