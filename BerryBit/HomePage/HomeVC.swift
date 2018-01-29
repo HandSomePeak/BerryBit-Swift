@@ -31,7 +31,8 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
     
     var m_array : Array = [NSLocalizedString("HomeVC_2", comment: ""),
                            NSLocalizedString("HomeVC_3", comment: ""),
-                           NSLocalizedString("HomeVC_4", comment: "")]
+                           NSLocalizedString("HomeVC_4", comment: ""),
+                           "数据库"]
     
     var ble : BlueTooth = BlueTooth.shareInstance
     
@@ -114,9 +115,13 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
     
     // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         print(indexPath.row)
-        
+        switch indexPath.row {
+        case 3:
+            self.present(DataBaseVC(), animated: true, completion: nil)
+        default:
+            break
+        }
         
     }
     
@@ -298,8 +303,7 @@ class HomeVC: UIViewController, UITableViewDelegate, UITableViewDataSource, Blue
             case 1: // 同步数据
                 self.mainButton.layer.insertSublayer(PublicClass().SetGradientLayer(button: self.mainButton, width: 0, layer: &self.gradientLayer), at: 0)
             case 2: // 正在同步
-                let wid : CGFloat = view_w * CGFloat(percent) / 100
-                print("wid = \(wid), percent = \(percent)")
+                let wid : CGFloat = self.mainButton.frame.size.width * CGFloat(percent) / 100
                 self.mainButton.layer.insertSublayer(PublicClass().SetGradientLayer(button: self.mainButton, width: wid, layer: &self.gradientLayer), at: 0)
             case 3: // 同步完成
                 self.mainButton.layer.insertSublayer(PublicClass().SetGradientLayer(button: self.mainButton, width: view_w, layer: &self.gradientLayer), at: 0)

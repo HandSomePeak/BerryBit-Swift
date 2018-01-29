@@ -29,6 +29,7 @@
 		046246D42016C3D700FE4FD0 /* SendCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046246D32016C3D700FE4FD0 /* SendCode.swift */; };
 		0494B65A1FF346D2000441D0 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B6591FF346D2000441D0 /* RegisterVC.swift */; };
 		0494B65C1FF36A93000441D0 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B65B1FF36A93000441D0 /* TextFieldView.swift */; };
+		04971016201EB951009452D9 /* DataBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04971015201EB951009452D9 /* DataBaseVC.swift */; };
 		04F1C11C1FFB882300AB00F4 /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1C11B1FFB882300AB00F4 /* NetWork.swift */; };
 		04F1C1231FFCBD7700AB00F4 /* PersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1C1221FFCBD7700AB00F4 /* PersonalInfo.swift */; };
 		657EDDD2D9C00FF529CB8B26 /* Pods_BerryBit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D683E0751C3CF68350A74791 /* Pods_BerryBit.framework */; };
@@ -80,6 +81,7 @@
 		046246D32016C3D700FE4FD0 /* SendCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCode.swift; sourceTree = "<group>"; };
 		0494B6591FF346D2000441D0 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		0494B65B1FF36A93000441D0 /* TextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		04971015201EB951009452D9 /* DataBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseVC.swift; sourceTree = "<group>"; };
 		04F1C11B1FFB882300AB00F4 /* NetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
 		04F1C1221FFCBD7700AB00F4 /* PersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfo.swift; sourceTree = "<group>"; };
 		D683E0751C3CF68350A74791 /* Pods_BerryBit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BerryBit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -223,6 +225,7 @@
 				045154751FFF750600C9BA66 /* LeftViewCell.swift */,
 				0428D2A02010768800D3EF0B /* BlueToothVC.swift */,
 				0428D2A22010802600D3EF0B /* DevicesCell.swift */,
+				04971015201EB951009452D9 /* DataBaseVC.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -477,6 +480,7 @@
 				042761421FD521260005DB4E /* ViewController.swift in Sources */,
 				0494B65C1FF36A93000441D0 /* TextFieldView.swift in Sources */,
 				045154761FFF750700C9BA66 /* LeftViewCell.swift in Sources */,
+				04971016201EB951009452D9 /* DataBaseVC.swift in Sources */,
 				04F1C11C1FFB882300AB00F4 /* NetWork.swift in Sources */,
 				0428D2A12010768800D3EF0B /* BlueToothVC.swift in Sources */,
 				041636A6201983CA001394E5 /* CoreDataHelper.swift in Sources */,

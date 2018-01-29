@@ -136,13 +136,39 @@ class CoreDataHelper: NSObject {
     }
 
     func addCoreData(time: String, data: String, type: String, mac: String) {
-        let entity = NSEntityDescription.insertNewObject(forEntityName: "Measure", into: CoreDataHelper.shareInstance.parentContext) as! Measure
-        entity.data = data
-        entity.time = time
-        entity.type = type
-        entity.mac = mac
-        CoreDataHelper.shareInstance.backgroundSaveContext()
+        
+        // 查找是否是相同的数据
+        let request : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
+        let entity1 = NSEntityDescription.entity(forEntityName: "Measure", in: CoreDataHelper.shareInstance.parentContext)
+        let pre = NSPredicate.init(format: "time=%@", time)
+        request.predicate = pre
+        request.entity = entity1
+        if let a = try? CoreDataHelper.shareInstance.parentContext.fetch(request) as! [Measure] as Array {
+            if a.count <= 0 {
+                let entity = NSEntityDescription.insertNewObject(forEntityName: "Measure", into: CoreDataHelper.shareInstance.parentContext) as! Measure
+                entity.data = data
+                entity.time = time
+                entity.type = type
+                entity.mac = mac
+            }
+            else {
+                print("发现相同数据，不添加到数据库 = \(a)")
+            }
+        }
     }
     
+    func selectDataFromCoreData() -> Array<Measure> {
+        
+        var dataSource = Array<Measure>()
+        let request : NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
+        let entity = NSEntityDescription.entity(forEntityName: "Measure", in: CoreDataHelper.shareInstance.parentContext)
+        let sort = NSSortDescriptor.init(key: "time", ascending: false)
+        request.sortDescriptors = [sort]
+        request.entity = entity
+        if let s = try? CoreDataHelper.shareInstance.parentContext.fetch(request) as! [Measure] as Array {
+            dataSource = s
+        }
+        return dataSource
+    }
     
 }
