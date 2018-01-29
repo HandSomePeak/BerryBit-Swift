@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0416369C20197DED001394E5 /* MeasureModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0416369A20197DED001394E5 /* MeasureModel.xcdatamodeld */; };
+		041636A6201983CA001394E5 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041636A5201983CA001394E5 /* CoreDataHelper.swift */; };
 		04268DEA1FDE15B100DC0B6D /* README.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 04268DE91FDE15B100DC0B6D /* README.rtf */; };
 		04268DED1FDE175D00DC0B6D /* PublicClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04268DEC1FDE175D00DC0B6D /* PublicClass.swift */; };
 		04268DF01FDE25CA00DC0B6D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04268DF21FDE25CA00DC0B6D /* Localizable.strings */; };
@@ -27,6 +29,7 @@
 		046246D42016C3D700FE4FD0 /* SendCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046246D32016C3D700FE4FD0 /* SendCode.swift */; };
 		0494B65A1FF346D2000441D0 /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B6591FF346D2000441D0 /* RegisterVC.swift */; };
 		0494B65C1FF36A93000441D0 /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0494B65B1FF36A93000441D0 /* TextFieldView.swift */; };
+		04971016201EB951009452D9 /* DataBaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04971015201EB951009452D9 /* DataBaseVC.swift */; };
 		04F1C11C1FFB882300AB00F4 /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1C11B1FFB882300AB00F4 /* NetWork.swift */; };
 		04F1C1231FFCBD7700AB00F4 /* PersonalInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F1C1221FFCBD7700AB00F4 /* PersonalInfo.swift */; };
 		657EDDD2D9C00FF529CB8B26 /* Pods_BerryBit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D683E0751C3CF68350A74791 /* Pods_BerryBit.framework */; };
@@ -50,6 +53,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0416369B20197DED001394E5 /* MeasureModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MeasureModel.xcdatamodel; sourceTree = "<group>"; };
+		041636A5201983CA001394E5 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
 		04268DE91FDE15B100DC0B6D /* README.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = README.rtf; sourceTree = "<group>"; };
 		04268DEC1FDE175D00DC0B6D /* PublicClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicClass.swift; sourceTree = "<group>"; };
 		04268DF11FDE25CA00DC0B6D /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -76,6 +81,7 @@
 		046246D32016C3D700FE4FD0 /* SendCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCode.swift; sourceTree = "<group>"; };
 		0494B6591FF346D2000441D0 /* RegisterVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		0494B65B1FF36A93000441D0 /* TextFieldView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
+		04971015201EB951009452D9 /* DataBaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseVC.swift; sourceTree = "<group>"; };
 		04F1C11B1FFB882300AB00F4 /* NetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
 		04F1C1221FFCBD7700AB00F4 /* PersonalInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalInfo.swift; sourceTree = "<group>"; };
 		D683E0751C3CF68350A74791 /* Pods_BerryBit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BerryBit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +123,31 @@
 			path = NetWork;
 			sourceTree = "<group>";
 		};
+		0416369720197DB1001394E5 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				0416369820197DB1001394E5 /* Classes */,
+				0416369920197DB1001394E5 /* Model */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		0416369820197DB1001394E5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				041636A5201983CA001394E5 /* CoreDataHelper.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		0416369920197DB1001394E5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0416369A20197DED001394E5 /* MeasureModel.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		04268DEB1FDE173E00DC0B6D /* PulbicClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +160,7 @@
 		042761331FD521260005DB4E = {
 			isa = PBXGroup;
 			children = (
+				0416369720197DB1001394E5 /* CoreData */,
 				0428D299200F22AB00D3EF0B /* BlueTooth */,
 				04F1C1211FFCBD6200AB00F4 /* Model */,
 				040ED40E1FFB64750077D66A /* NetWork */,
@@ -193,6 +225,7 @@
 				045154751FFF750600C9BA66 /* LeftViewCell.swift */,
 				0428D2A02010768800D3EF0B /* BlueToothVC.swift */,
 				0428D2A22010802600D3EF0B /* DevicesCell.swift */,
+				04971015201EB951009452D9 /* DataBaseVC.swift */,
 			);
 			path = HomePage;
 			sourceTree = "<group>";
@@ -447,8 +480,10 @@
 				042761421FD521260005DB4E /* ViewController.swift in Sources */,
 				0494B65C1FF36A93000441D0 /* TextFieldView.swift in Sources */,
 				045154761FFF750700C9BA66 /* LeftViewCell.swift in Sources */,
+				04971016201EB951009452D9 /* DataBaseVC.swift in Sources */,
 				04F1C11C1FFB882300AB00F4 /* NetWork.swift in Sources */,
 				0428D2A12010768800D3EF0B /* BlueToothVC.swift in Sources */,
+				041636A6201983CA001394E5 /* CoreDataHelper.swift in Sources */,
 				04268DED1FDE175D00DC0B6D /* PublicClass.swift in Sources */,
 				042761721FD530EE0005DB4E /* HomeVC.swift in Sources */,
 				0494B65A1FF346D2000441D0 /* RegisterVC.swift in Sources */,
@@ -457,6 +492,7 @@
 				0428D29D200F405900D3EF0B /* PeripheralModel.swift in Sources */,
 				042761701FD530D30005DB4E /* LoginVC.swift in Sources */,
 				04F1C1231FFCBD7700AB00F4 /* PersonalInfo.swift in Sources */,
+				0416369C20197DED001394E5 /* MeasureModel.xcdatamodeld in Sources */,
 				046246D42016C3D700FE4FD0 /* SendCode.swift in Sources */,
 				0428D2A32010802600D3EF0B /* DevicesCell.swift in Sources */,
 			);
@@ -756,6 +792,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0416369A20197DED001394E5 /* MeasureModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0416369B20197DED001394E5 /* MeasureModel.xcdatamodel */,
+			);
+			currentVersion = 0416369B20197DED001394E5 /* MeasureModel.xcdatamodel */;
+			path = MeasureModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 042761341FD521260005DB4E /* Project object */;
 }

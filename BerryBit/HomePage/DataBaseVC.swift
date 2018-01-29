@@ -1,64 +1,36 @@
 //
-//  BlueToothVC.swift
+//  DataBaseVC.swift
 //  BerryBit
 //
-//  Created by 杨峰 on 2018/1/18.
+//  Created by 杨峰 on 2018/1/29.
 //  Copyright © 2018年 BerryBit. All rights reserved.
 //
 
 import UIKit
-import SVProgressHUD
 
-class BlueToothVC: UIViewController, UITableViewDelegate, UITableViewDataSource, BlueToothDelegate, DevicesCellDelegate {
+class DataBaseVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    let ble = BlueTooth.shareInstance
     var table = UITableView()
-    var m_array : Array<PeripheralModel> = []
+    var m_array = Array<Measure>()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("蓝牙扫描界面")
+        print("viewDidAppear")
+        
         self.CreateTableView()
         
-        ble.scanDevicesFunc()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        ble.delegate = self
+        self.SetMutableArray()
     }
     
-    // MARK: BlueToothDelegate
-    // 发现外围设备
-    func DiscoverPeripheral(device: PeripheralModel) {
-        if !m_array.contains(device) {
-            m_array.append(device)
-            table.reloadData()
+    func SetMutableArray() {
+        DispatchQueue.global().async {
+            self.m_array = CoreDataHelper.shareInstance.selectDataFromCoreData()
+            DispatchQueue.main.async {
+                self.table.reloadData()
+            }
         }
     }
-    
-    // 手环连接状态
-    func DidConnectedState(state: Bool) {
-        if state {
-            print("手环已连接")
-            // 对手环进行时间同步
-            SendCode().SendSynchronizationTimeCode()
-            // 获取手环设备的信息（硬件版本号、软件版本号）
-            SendCode().SendMatchMessageCode()
-            SVProgressHUD.showSuccess(withStatus: "连接手环成功")
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0, execute: {
-                self.dismiss(animated: true, completion: nil)
-            })
-        }
-        else {
-            print("手环未连接")
-        }
-    }
-    
-    
-    
-    
-    
     
     // MARK: UITableViewDataSource
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -73,14 +45,14 @@ class BlueToothVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         
         let cell_h = PublicClass.HeightWith(height: 58)
         tableView.rowHeight = cell_h
-        
-        let indetifier = "cell"
-        let cell = DevicesCell.init(style: UITableViewCellStyle.subtitle, reuseIdentifier: indetifier)
-        cell.selectionStyle = UITableViewCellSelectionStyle.none
-        cell.delegate = self
+        let cell = UITableViewCell.init(style: UITableViewCellStyle.default, reuseIdentifier: "cell")
         let model = m_array[indexPath.row]
-        cell.setFrameAndModel(model: model, tableview: tableView, indexPath: indexPath)
-        
+        let date : Date = Date.init(timeIntervalSince1970: Double(model.time!)!)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let dateStr = formatter.string(from: date)
+        let string = "\(dateStr), type = \(model.type!), data = \(model.data!)"
+        cell.textLabel?.text = string
         return cell
     }
     
@@ -90,12 +62,7 @@ class BlueToothVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
     }
     
     func DidSelectedBunding(button: UIButton) {
-        let model = m_array[button.tag]
         
-        ble.connectedPeripheral(peripheral: model.peripheral, data: model.Data)
-        
-        PublicClass.SetSVProgressHUD()
-        SVProgressHUD.show()
     }
     
     func CreateTableView() {
@@ -133,4 +100,7 @@ class BlueToothVC: UIViewController, UITableViewDelegate, UITableViewDataSource,
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+
+
 }

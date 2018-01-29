@@ -23,6 +23,21 @@ import CoreBluetooth
     @objc optional func DidReceiveFirmwareUpdateState(state: Bool)
     // 手环信息（硬件版本号、软件版本号）
     @objc optional func DidReceiveMatchMessage(heardVersion: String, SoftWareVersion: String)
+    // 数据数量
+    @objc optional func DidReceiveMessageCount(value: Int)
+    // 数据接收
+    @objc optional func DidReceiveMessageData(value: Int)
+    // 指令接收成功
+    @objc optional func DidReceiveCodeSuccess(value: UInt8)
+    // 指令接收失败
+    @objc optional func DidReceiveCodeFail(value: UInt8)
+    // 数据接收完毕
+    @objc optional func DidReceiveMessageOver()
+    // 开始封装数据并上传
+    @objc optional func DidStartUploadData()
+    // 手环绑定状态
+    @objc optional func DidConnectedState(state: Bool)
+    
     
 }
 
@@ -44,6 +59,9 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     var HardVersion = String()  // 硬件版本号
     var softwareVersion = String()  // 软件版本号
     
+    var receiveCount = 0        // 已接收数据的个数
+    var messageCount = 0        // 数据总个数
+    
     // 单例
     static let shareInstance = BlueTooth()
     override init() {
@@ -58,13 +76,19 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     // MARK: 扫描外围设备方法
     func scanDevicesFunc() {
+        print("扫描外围设备方法")
         if Manger == nil || Manger.state != .poweredOn {
+            print("系统蓝牙已关闭，不能扫描外围设备")
             self.initBlueTooth()
         }
         else {
             if Peripheral == nil || Peripheral.state != .connected {
+                print("开始扫描外围设备")
                 peripheralArray = Array.init()
                 Manger.scanForPeripherals(withServices: nil, options: nil)
+            }
+            else {
+                print("已连接，不扫描外围设备")
             }
         }
     }
@@ -73,20 +97,26 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
         case .poweredOn:
-            delegate?.ManagerDidUpdateState!(open: true)
+            delegate?.ManagerDidUpdateState?(open: true)
         default:
-            delegate?.ManagerDidUpdateState!(open: false)
+            delegate?.ManagerDidUpdateState?(open: false)
+            self.ConnectedState(state: false)
+            if self.Peripheral != nil && self.Manger != nil {
+                self.Manger.cancelPeripheralConnection(self.Peripheral)
+            }
         }
     }
     
     // MARK: 发现外设
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
+        
         if peripheral.name != nil && (peripheral.name == "ELB" || peripheral.name == "ELA") {
             let perName : String = peripheral.name!
             let macStr = PublicClass().AdcDataToMacStr(AdvData: advertisementData)
             if macStr.count == 0 {
                 return
             }
+            
             print("name = \(perName), adv = \(String(describing: advertisementData["kCBAdvDataManufacturerData"])), macStr = \(macStr)")
             
             // 扫码连接
@@ -120,7 +150,7 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                             // 连接设备
                             self.connectedPeripheral(peripheral: peripheral, data: advertisementData)
                             // 协议
-                            delegate?.DiscoverBundingDevice!(device: model)
+                            delegate?.DiscoverBundingDevice?(device: model)
                         }
                     }
                 }
@@ -144,27 +174,35 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     // MARK: 发现服务
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-        print("发现服务")
+        //print("发现服务 = \(String(describing: peripheral.services))")
         for service in peripheral.services! {
+            print("service = \(service)")
             peripheral.discoverCharacteristics(nil, for: service)
         }
     }
     
+    
+    
     // MARK: 发现特征值
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
         print("发现特征值")
-        for characteristic in service.characteristics! {
-            let uuid : String = String.init(describing: characteristic.uuid)
-            self.Peripheral.setNotifyValue(true, for: characteristic)
-            if uuid == "Battery Level" {
-                self.char_battery = characteristic
+        if service.characteristics != nil {
+            for characteristic in service.characteristics! {
+                let uuid : String = String.init(describing: characteristic.uuid)
+                self.Peripheral.setNotifyValue(true, for: characteristic)
                 print("uuid = \(uuid)")
-//                // 获取电池电量
-//                SendCode().SendBatteryCode()
-                // 对手环进行时间同步
-                SendCode().SendSynchronizationTimeCode()
-                // 获取手环设备的信息（硬件版本号、软件版本号）
-                SendCode().SendMatchMessageCode()
+                if uuid == "Battery Level" {
+                    self.ExchangeMac = self.macdata
+                    self.char_battery = characteristic
+                    // 获取电池电量
+                    SendCode().SendBatteryCode()
+                    // 手环连接状态
+                    delegate?.DidConnectedState?(state: true)
+//                    // 对手环进行时间同步
+//                    SendCode().SendSynchronizationTimeCode()
+//                    // 获取手环设备的信息（硬件版本号、软件版本号）
+//                    SendCode().SendMatchMessageCode()
+                }
             }
         }
     }
@@ -173,10 +211,9 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         let value = [UInt8](characteristic.value!)
         if value.count == 1 {
-            print("电池电量 = \(Int(value.first!))")
             // 如果特征值只有一位，则说明该特征值为电池电量
             self.Battery = Int(value.first!)
-            delegate?.DischangeBattery!(value: Int(value.first!))
+            delegate?.DischangeBattery?(value: Int(value.first!))
         }
         else if value.count >= 5 {
             var k : Int = 0
@@ -196,9 +233,9 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             case 0x15:  // 数据接收
                 self.ReceiveData(value: value)
             case 0x2D:  // 指令接收成功
-                self.CodeReceiveSuccess(value: Int(value[5]))
+                delegate?.DidReceiveCodeSuccess?(value: value[5])
             case 0x2E:  // 指令接收失败
-                self.CodeReceiveFail(value: Int(value[5]))
+                delegate?.DidReceiveCodeFail?(value: value[5])
             case 0x58:  // 数据接收完毕
                 self.ReceiveDataOver()
             default:
@@ -209,17 +246,24 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
 
     // MARK: 发送指令反馈
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
-        print("发送指令反馈")
+        if let _ = error {
+            print("指令发送失败 = \(String(describing: error))")
+        }
+        else {
+            print("指令发送成功 = \(String(describing: error))")
+        }
     }
     
     // MARK: 外设连接失败
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("外设连接失败")
+        self.ConnectedState(state: false)
     }
     
     // MARK: 外设连接成功后，再失去连接
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("外设连接成功后，再失去连接")
+        self.ConnectedState(state: false)
     }
     
     // MARK: 发送指令（有响应）
@@ -270,17 +314,17 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
                 }
             }
         }
-        delegate?.DiscoverPeripheral!(device: model)
+        delegate?.DiscoverPeripheral?(device: model)
     }
     
     // MARK: 特征值改变 ---- 固件更新校验是否成功
     func FirmwareUpdateCheckResults(value: Int) {
         print("特征值改变 ---- 固件更新校验是否成功 = \(value)")
         if value == 1 {
-            delegate?.DidReceiveFirmwareUpdateState!(state: true)
+            delegate?.DidReceiveFirmwareUpdateState?(state: true)
             return
         }
-        delegate?.DidReceiveFirmwareUpdateState!(state: false)
+        delegate?.DidReceiveFirmwareUpdateState?(state: false)
     }
     
     // MARK: 特征值改变 ---- 手环信息
@@ -289,37 +333,46 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
         let version = SendCode().ParseingMatchMessage(value: value)
         self.HardVersion = version.heard
         self.softwareVersion = version.software
-        delegate?.DidReceiveMatchMessage!(heardVersion: version.heard, SoftWareVersion: version.software)
+        delegate?.DidReceiveMatchMessage?(heardVersion: version.heard, SoftWareVersion: version.software)   // 接收到手环信息的协议
     }
     
     // MARK: 特征值改变 ---- 数据数量
     func DataCount(value: [UInt8]) {
-        print("特征值改变 ---- 数据数量 = \(value)")
+        self.receiveCount = 0
+        self.messageCount = SendCode().ParseingMessageCount(value: value)
+        print("特征值改变 ---- 数据数量 = \(self.messageCount)")
+        delegate?.DidReceiveMessageCount?(value: self.messageCount)
     }
     
     // MARK: 特征值改变 ---- 数据接收
     func ReceiveData(value: [UInt8]) {
-        print("特征值改变 ---- 数据接收 = \(value)")
-    }
-    
-    // MARK: 特征值改变 ---- 指令接收成功
-    func CodeReceiveSuccess(value: Int) {
-        print("特征值改变 ---- 指令接收成功 = \(value)")
-    }
-    
-    // MARK: 特征值改变 ---- 指令接收失败
-    func CodeReceiveFail(value: Int) {
-        print("特征值改变 ---- 指令接收失败 = \(value)")
+        let count = SendCode().ParseingData(value: value)
+        self.receiveCount += count
+        print("特征值改变 ---- 已数据接收 = \(self.receiveCount)")
+        delegate?.DidReceiveMessageData?(value: self.receiveCount)
     }
     
     // MARK: 特征值改变 ---- 数据接收完毕
     func ReceiveDataOver() {
         print("特征值改变 ---- 数据接收完毕")
+        delegate?.DidReceiveMessageOver?()
+        // 保存数据到数据库
+        CoreDataHelper.shareInstance.backgroundSaveContext()
+        DispatchQueue.main.asyncAfter(deadline: (DispatchTime.now() + 1), execute: {
+            self.delegate?.DidStartUploadData?()
+        })
     }
     
     
     
-    // MARK:
+    // MARK: 手环连接状态
+    func ConnectedState(state: Bool) {
+        if state == false {
+            self.ExchangeMac = String()
+            self.Battery = 0
+        }
+        delegate?.DidConnectedState?(state: state)
+    }
     
     
     

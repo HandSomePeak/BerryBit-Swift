@@ -9,6 +9,9 @@
 import UIKit
 
 class SendCode: NSObject {
+    // MARK:
+    // MARK: ======== 指令发送方法
+    // MARK:
     
     // MARK: 发送获取电池电量指令的指令
     func SendBatteryCode() {
@@ -21,7 +24,7 @@ class SendCode: NSObject {
     func SendMatchMessageCode() {
         print("发送获取手环信息（硬件版本号、软件版本号）的指令")
         var ack : [UInt8] = [UInt8].init(repeating: 0x00, count: 5)
-        ack[0] = 0xAA; ack[1] = 0x55; ack[2] = 0x05; ack[3] = 0x56;
+        ack[0] = 0xAA; ack[1] = 0x55; ack[2] = 0x05; ack[3] = 0x55;
         ack[4] = ack[2] &+ ack[3]
         self.SendCode(ack: ack)
     }
@@ -61,6 +64,13 @@ class SendCode: NSObject {
         self.SendCode(ack: ack)
     }
     
+    
+    
+    // MARK:
+    // MARK: ======== 解析指令方法
+    // MARK:
+    
+    
     // MARK: 解析 ---- 手环信息(硬件版本号、软件版本号)
     func ParseingMatchMessage(value: [UInt8]) -> (heard: String, software: String) {
         var version : (heard: String, software: String) = ("-","-")
@@ -84,7 +94,160 @@ class SendCode: NSObject {
         return version
     }
     
-    // MARK:
+    // MARK: 解析 ---- 数据数量
+    func ParseingMessageCount(value: [UInt8]) -> Int {
+        if value.count > 9 {
+            var string = String()
+            for i in 5...8 {
+                let str = String.init(format: "%.2x", UInt8(value[i]) & 0xff)
+                string = str + string
+            }
+            if string.count > 0 {
+                let a = self.hexStr(hex: string)
+                return a
+            }
+        }
+        return 0
+    }
+    
+    // MARK: 解析 ---- 数据
+    func ParseingData(value: [UInt8]) -> Int {
+        if value.count > 7 {
+            switch Int(value[5]) {
+            case 0:
+                return self.ParseingStepData(value: value)
+            case 1:
+                return self.ParseingSleepData(value: value)
+            case 3:
+                return self.ParseingLightData(value: value)
+            default:
+                break
+            }
+        }
+        return 0
+    }
+    
+    // MARK: 解析 ---- 睡眠数据
+    func ParseingSleepData(value: [UInt8]) -> Int {
+        let type = Int(value[5])
+        let n = Int(value[3])
+        
+        var count = 0
+        var i = 0
+        let step = 8
+        for _ in 0..<((n - 1) / step) {
+            // 时间戳
+            var time = String()
+            for j in 0...3 {
+                let str : String = String.init(format: "%.2x", UInt8(value[i + j + 6]) & 0xff)
+                time = time + str
+            }
+            let Time = String(self.hexStr(hex: time))
+            
+            // 数据 1
+            var data_1 = String()
+            for j in 0...1 {
+                let str : String = String.init(format: "%.2x", UInt8(value[i + j + 10]) & 0xff)
+                data_1 = data_1 + str
+            }
+            let Data_1 = String(self.hexStr(hex: data_1))
+            
+            // 保存数据
+            if Int(Data_1)! < 10 {
+                self.SaveDataToDB(time: Time, data: Data_1, type: String(type))
+            }
+            
+            count += 1
+            i += step
+        }
+        return count
+    }
+    
+    // MARK: 解析 ---- 计步数据
+    func ParseingStepData(value: [UInt8]) -> Int {
+        let type = Int(value[5])
+        let n = Int(value[3])
+        
+        var count = 0
+        var i = 0
+        let step = 8
+        for _ in 0..<((n - 1) / step) {
+            // 时间戳
+            var time = String()
+            for j in 0...3 {
+                let str : String = String.init(format: "%.2x", UInt8(value[i + j + 6]) & 0xff)
+                time = time + str
+            }
+            let Time = String(self.hexStr(hex: time))
+            
+            // 数据 1
+            var data_1 = String()
+            for j in 0...1 {
+                let str : String = String.init(format: "%.2x", UInt8(value[i + j + 10]) & 0xff)
+                data_1 = data_1 + str
+            }
+            let Data_1 = String(self.hexStr(hex: data_1))
+            
+            // 保存数据
+            if Int(Data_1)! < 50000 {
+                self.SaveDataToDB(time: Time, data: Data_1, type: String(type))
+            }
+            
+            count += 1
+            i += step
+        }
+        return count
+    }
+    
+    // MARK: 解析 ---- 光感数据
+    func ParseingLightData(value: [UInt8]) -> Int {
+        let type = Int(value[5])
+        let n = Int(value[3])
+        
+        var count = 0
+        var i = 0
+        let step = 8
+        for _ in 0..<((n - 1) / step) {
+            // 时间戳
+            var time = String()
+            for j in 0...3 {
+                let str : String = String.init(format: "%.2x", UInt8(value[i + j + 6]) & 0xff)
+                time = time + str
+            }
+            let Time = String(self.hexStr(hex: time))
+            
+            // 数据 1
+            var data_1 = String()
+            for j in 0...1 {
+                let str : String = String.init(format: "%.2x", UInt8(value[i + j + 10]) & 0xff)
+                data_1 = data_1 + str
+            }
+            let Data_1 = String(self.hexStr(hex: data_1))
+            
+            // 数据 2
+            var data_2 = String()
+            for j in 0...1 {
+                let str : String = String.init(format: "%.2x", UInt8(value[i + j + 12]) & 0xff)
+                data_2 = data_2 + str
+            }
+            let Data_2 = String(self.hexStr(hex: data_2))
+            
+            // 保存数据
+            if Int(Data_1)! < 20000 && Int(Data_2)! < 20000 {
+                self.SaveDataToDB(time: Time, data: Data_1 + "-" + Data_2, type: String(type))
+            }
+            
+            count += 1
+            i += step
+        }
+        return count
+    }
+
+    // MARK: 保存数据到数据库
+    func SaveDataToDB(time: String, data: String, type: String) {
+        print("保存数据到数据库 = \(time), \(data), \(type)")
+        CoreDataHelper.shareInstance.addCoreData(time: time, data: data, type: type, mac: BlueTooth.shareInstance.ExchangeMac)
+    }
     
     // MARK: 十六进制字符串转十进制整数
     func hexStr(hex: String) -> Int {
