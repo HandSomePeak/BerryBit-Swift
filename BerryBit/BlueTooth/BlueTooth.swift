@@ -204,7 +204,6 @@ class BlueTooth: NSObject, CBCentralManagerDelegate, CBPeripheralDelegate {
             default:
                 break
             }
-            
         }
     }
 
